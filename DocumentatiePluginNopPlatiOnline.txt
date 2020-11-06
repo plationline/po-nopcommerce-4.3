@@ -1,0 +1,63 @@
+﻿I. SETARI IN PROIECTUL NOP:
+ 
+   1. Se copiaza "Nop.Plugin.Payments.PlatiOnline" in "nopCommerce_4.30_Source\Plugins"
+ 
+   2. Se deschide in Microsoft Visual Studio  "NopCommerce.sln":
+      - in Plugins -  Add Existing Project: "Nop.Plugin.Payments.PlatiOnline.csproj"
+                                            (...\nopCommerce_4.30\Plugins\Nop.Plugin.Payments.PlatiOnline) 
+      - in proiectul "Nop.Plugin.Payments.PlatiOnline" - Properties - Build :
+              1) Configuration: All Configurations
+              2) Output path: ..\..\nopCommerce_4.30_Source\Presentation\Nop.Web\Plugins\Payments.PlatiOnline\
+			        
+   3. In nopCommerce_4.30_Source\Libraries\Nop.Core\Domain\Orders\OrderStatus.cs:
+          1) in OrderStatus enum  se adauga :   Authorized = 50,
+												OnHold = 60,
+												PaymentDeclined = 70,
+												PaymentRefunded = 80,
+												PaymentVoided = 90,
+												PaymentSettled = 100,
+												PaymentRefused = 110,
+												PaymentExpired = 120
+ 
+   4. In  nopCommerce_4.30_Source\Libraries\Nop.Core\Domain\Payments\PaymentStatus.cs:
+          2) in PaymentStatus enum se adauga:   OnHold = 60,
+												Declined = 70,
+												PendingSettle = 80,
+												PendingRefund = 90,
+												PendingVoid = 100,
+												Settle = 110,
+												Refused = 120,
+												Expired = 130,
+												PendingAuthorization = 140,
+												Error = 150
+II. SETARI ADMINISTRATOR:
+ 
+    In  Administration - Configuration:
+ 
+     1. Plugins - se cauta dupa System name: "Payments.PlatiOnline" => Instal 
+ 
+     2. PaymentMethod - se cauta dupa System name: "Payments.PlatiOnline"   
+                      1) Edit: 
+						a) Se selecteaza checkbox-ul "Is enabled"  
+                        b) Display order=1  
+                        c) Save  
+                      2) Configure: 
+						a) MerchantId(default) /PublicKey /PrivateKey/IvAuth/IvItsn (se primesc de la PlatiOnline  dupa creearea contului de comerciant)
+			            b) Se selecteaza monedele in care se poate efectua tranzactii 
+			            c) Daca utilizatorul are setata alta moneda decat cele de mai sus,se selecteaza moneda in care se va converti moneda utilizatorului pentru a se putea efectua tranzactia 
+			            d) Relay response URL: Plugins/PaymentPlatiOnline/CheckoutCompleted
+						e) Relay method: Se selecteaza mteodata de transmitere a datelor 
+						f) Se bifeaza checkbox-ul TestMode pentru demo si se debifeaza pentru live.
+						g) Se bifeaza checkbox-ul Use SSL daca site-ul folosete o conexiune HTTPS. 
+						h) Save
+        
+III. SETARI CONT COMERCIANT PLATIONLINE:
+ 
+     In Setari:
+     1. Notificările instant la schimbarea starii tranzacţiei:
+              1) Introduceti noul url: .../Plugins/PaymentPlatiOnline/ITSN 
+              2) Selectati noua metoda : POST
+			  3) Salveaza modificarile
+		
+OBSERVATII: In cazul in care apare o eroare in procesarea platii user-ul primeste un mesaj generic iar eroarea se salveaza ca nota aferenta comenzii.			  
+			Daca se adauga limba Romana/Engleza trebuie reinstalat plugin-ul.

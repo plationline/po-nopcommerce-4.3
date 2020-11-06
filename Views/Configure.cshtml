@@ -1,0 +1,161 @@
+﻿@model Nop.Plugin.Payments.PlatiOnline.Models.ConfigurationModel
+@inject Nop.Core.IWebHelper webHelper
+@{
+    Layout = "_ConfigurePlugin";
+}
+
+@await Component.InvokeAsync("StoreScopeConfiguration")
+
+<form asp-controller="PaymentPlatiOnline" asp-action="Configure" method="post">
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="Merchant_Id_OverrideForStore" asp-input="Merchant_Id" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="Merchant_Id" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="Merchant_Id" />
+                        <span asp-validation-for="Merchant_Id"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="Public_Key_OverrideForStore" asp-input="Public_Key" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="Public_Key" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="Public_Key" />
+                        <span asp-validation-for="Public_Key"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="Private_Key_OverrideForStore" asp-input="Private_Key" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="Private_Key" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="Private_Key" />
+                        <span asp-validation-for="Private_Key"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="IvAuth_OverrideForStore" asp-input="IvAuth" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="IvAuth" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="IvAuth" />
+                        <span asp-validation-for="IvAuth"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="IvItsn_OverrideForStore" asp-input="IvItsn" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="IvItsn" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="IvItsn" />
+                        <span asp-validation-for="IvItsn"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="TransactModeId_OverrideForStore" asp-input="TransactModeId" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="TransactModeValues" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-select asp-for="TransactModeId" asp-items="Model.TransactModeValues" />
+                        <span asp-validation-for="TransactModeId"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="RON_OverrideForStore" asp-input="RON" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="RON" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="RON" />
+                        <span asp-validation-for="RON"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="EUR_OverrideForStore" asp-input="EUR" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="EUR" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="EUR" />
+                        <span asp-validation-for="EUR"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="USD_OverrideForStore" asp-input="USD" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="USD" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="USD" />
+                        <span asp-validation-for="USD"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="OtherCurrencyId_OverrideForStore" asp-input="OtherCurrencyId" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="OtherCurrencyId" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-select asp-for="OtherCurrencyId" asp-items="Model.OtherCurrency" />
+                        <span asp-validation-for="OtherCurrencyId"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="Relay_Response_URL_OverrideForStore" asp-input="Relay_Response_URL" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="Relay_Response_URL" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="Relay_Response_URL" />
+                        <span asp-validation-for="Relay_Response_URL"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="RelayMethodId_OverrideForStore" asp-input="RelayMethodId" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="RelayMethodId" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-select asp-for="RelayMethodId" asp-items="Model.RelayMethod" />
+                        <span asp-validation-for="RelayMethodId"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="TestMode_OverrideForStore" asp-input="TestMode" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="TestMode" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="TestMode" />
+                        <span asp-validation-for="TestMode"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="SSL_OverrideForStore" asp-input="SSL" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="SSL" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="SSL" />
+                        <span asp-validation-for="SSL"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-md-offset-3">
+                        <input type="submit" name="save" class="btn bg-primary" value="@T("Admin.Common.Save")" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
